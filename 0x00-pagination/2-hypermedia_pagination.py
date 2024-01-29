@@ -46,7 +46,7 @@ class Server:
             'data': self.get_page(page, page_size),
             'next_page': page + 1 if self.get_page(page + 1) != [] else None,
             'prev_page': None if page - 1 == 0 else page - 1,
-            'total_pages': int(19419 / page_size) if (19419 % page_size - 1) \
-                    == 0 else int(19419 / page_size) + 1
+            'total_pages': int(19419 / page_size) if (19419 % page_size - 1)
+            <= 0 else int(19419 / page_size) + 1
              }
         return page_dict
