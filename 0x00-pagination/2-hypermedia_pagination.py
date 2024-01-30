@@ -6,6 +6,13 @@ from typing import List, Dict, Any
 
 
 def index_range(page: int, page_size: int) -> tuple:
+    """returns the start and end index of the page
+    Args: 
+        page: page number
+        page_size: page size, number of rows in a page
+    Returns: 
+        start and end index (tuple)"""
+
     return ((page - 1) * page_size, page * page_size)
 
 
@@ -15,6 +22,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """initializes an instance"""
         self.__dataset = None
 
     def dataset(self) -> List[List]:
@@ -29,6 +37,8 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """gets the data in a page"""
+
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert page > 0
@@ -40,6 +50,8 @@ class Server:
         return required_data
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+        """gets data and includes some info"""
+
         page_data = self.get_page(page, page_size)
         total_pages = len(self.dataset()) // page_size + 1
         page_dict = {
