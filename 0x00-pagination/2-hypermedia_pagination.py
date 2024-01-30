@@ -7,10 +7,10 @@ from typing import List, Dict, Any
 
 def index_range(page: int, page_size: int) -> tuple:
     """returns the start and end index of the page
-    Args: 
+    Args:
         page: page number
         page_size: page size, number of rows in a page
-    Returns: 
+    Returns:
         start and end index (tuple)"""
 
     return ((page - 1) * page_size, page * page_size)

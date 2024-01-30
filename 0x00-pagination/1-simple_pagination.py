@@ -6,6 +6,13 @@ from typing import List
 
 
 def index_range(page: int, page_size: int) -> tuple:
+    """returns the start and end index of the page
+    Args:
+        page: page number
+        page_size: page size, number of rows in a page
+    Returns:
+        start and end index (tuple)"""
+
     return ((page - 1) * page_size, page * page_size)
 
 
