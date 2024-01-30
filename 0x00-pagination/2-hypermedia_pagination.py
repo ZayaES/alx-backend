@@ -40,13 +40,15 @@ class Server:
         return required_data
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+        page_data = self.get_page(page, page_size)
+        total_pages = len(self.dataset()) // page_size + 1
         page_dict = {
-            'page_size': page_size if self.get_page(page) != [] else 0,
+            'page_size': page_size if page_size
+            <= len(page_data) else len(page_data),
             'page': page,
-            'data': self.get_page(page, page_size),
-            'next_page': page + 1 if self.get_page(page + 1) != [] else None,
-            'prev_page': None if page - 1 == 0 else page - 1,
-            'total_pages': int(19419 / page_size) if (19419 % page_size - 1)
-            <= 0 else int(19419 / page_size) + 1
+            'data': page_data,
+            'next_page': page + 1 if page + 1 <= total_pages else None,
+            'prev_page': page - 1 if page > 1 else None,
+            'total_pages': total_pages
              }
         return page_dict
