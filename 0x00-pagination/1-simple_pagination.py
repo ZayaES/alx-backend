@@ -22,6 +22,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """initializes an instance"""
         self.__dataset = None
 
     def dataset(self) -> List[List]:
@@ -36,6 +37,8 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """gets the data in a page"""
+
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert page > 0
